@@ -21,6 +21,7 @@
 						</div>
 					</div>
 					<div class="table-responsive">
+						<% if(result.length > 0) {%>
 						<table class="table">
 							<thead>
 								<tr>
@@ -45,6 +46,9 @@
 								<% } %>								 
 							</tbody>
 						</table>
+						<% } else {%>
+							<P>No blogs found</P>
+							<% } %>		
 					</div>
 					<div class="collapse collapse-box" id="contextual-table">
 						<div class="code-box">

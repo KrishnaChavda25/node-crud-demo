@@ -14,19 +14,12 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://final_demo_98:final_demo_98@ds259820.mlab.com:59820/final_auth_demo'); // connect to our database
 var db
 
-router.getImageById = function(id, callback) {
-  
- Blog.findById(id, callback);
- 
-}
-
 exports.list = function(req, res) {
 	
 	if (req.session.user) {
 
 		Blog.find((err, result) => {
 				if (err) return console.log(err)
-					console.log(result[0].title);
 					res.render('blogs/list',{result:result});
 			})
 
@@ -66,9 +59,15 @@ exports.save = function(req, res, next) {
 	if (req.session.user) {
 
 	Blog.find().sort([['_id', 'descending']]).limit(1).exec(function(err, blogdata) {	
-        if (req.body.title &&
-		    req.body.author &&
-		    req.body.description) {
+		if(blogdata.length > 0)
+		{
+			my_id = blogdata[0]._id + 1;
+		}
+		else
+		{
+			my_id =1;
+		}
+        if (req.body.title && req.body.author && req.body.description) {
 
            message = '';
            var blogData = {
@@ -78,7 +77,7 @@ exports.save = function(req, res, next) {
 		      created_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
 		      updated_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
 		      status: 'active',
-		      _id: blogdata[0]._id + 1,
+		      _id: my_id,
 		    }
 
 		    Blog.create(blogData, function (error, user) {
@@ -201,7 +200,14 @@ exports.delete = function(req, res) {
 	
 	if (req.session.user) {
 
-		res.render('blogs/list');
+		Blog.findByIdAndRemove(req.params.id, (err, todo) => {  
+		    // As always, handle any potential errors:
+		    if (err) return res.status(500).send(err);
+		    // We'll create a simple object to send back with a message and the id of the document that was removed
+		    // You can really do this however you want, though.
+		        message: "Todo successfully deleted",
+		        res.redirect('/blogs');
+		});
 
 	} else {
 

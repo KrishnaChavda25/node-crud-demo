@@ -29,7 +29,7 @@ module.exports = function (app, passport) {
     app.get('/blogs/edit/:id', blog.edit);
     app.post('/blogs/update/:id', blog.update);
     app.get('/blogs/show/:id', blog.show);
-    app.delete('/blogs/delete/:id', blog.delete);
+    app.get('/blogs/delete/:id', blog.delete);
 
 
 }
