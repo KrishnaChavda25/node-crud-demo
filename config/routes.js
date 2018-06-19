@@ -1,5 +1,6 @@
 var home = require('../app/controllers/home');
 var blog = require('../app/controllers/blog');
+var category = require('../app/controllers/category');
 
 //you can include all your controllers
 
@@ -30,6 +31,13 @@ module.exports = function (app, passport) {
     app.post('/blogs/update/:id', blog.update);
     app.get('/blogs/show/:id', blog.show);
     app.get('/blogs/delete/:id', blog.delete);
+
+    app.get('/categories', category.list);
+    app.get('/categories/create', category.create);
+    app.post('/categories/save', category.save);
+    app.get('/categories/edit/:id', category.edit);
+    app.post('/categories/update/:id', category.update);
+    app.get('/categories/delete/:id', category.delete);
 
 
 }
