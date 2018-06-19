@@ -18,11 +18,12 @@ exports.loggedIn = function(req, res, next)
 
 exports.home = function(req, res) {
 	
-	
+	console.log('jjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkjjjjjjjj : ', req.session.user.name);
 	res.render('home.ejs', {
 		error : req.flash("error"),
 		success: req.flash("success"),
 		session:req.session,
+		name: req.session.user.name,
 	
 	 });
 	 

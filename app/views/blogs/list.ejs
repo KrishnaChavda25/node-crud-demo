@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include ../shared/head %>
+</head>
+<body>
+	<%- include ../shared/header %>
+	<%- include ../shared/sidebar %>
+	<div class="main-container">
+		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
+			<div class="min-height-200px">
+
+				<!-- Contextual classes Start -->
+				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+					<div class="clearfix mb-20">
+						<div class="pull-left">
+							<h4 class="text-blue">Blogs</h4>
+						</div>
+						<div class="pull-right">
+							<a href="/blogs/create" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-plus"></i> Add Blog</a>
+						</div>
+					</div>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Name</th>
+									<th scope="col">Author</th>
+									<th scope="col">Created At</th>
+									<th scope="col">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="table-active">
+									<th scope="row">1</th>
+									<td>Mark</td>
+									<td>Otto</td>
+									<td>@mdo</td>
+									<td><span class="badge badge-primary">Primary</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="collapse collapse-box" id="contextual-table">
+						<div class="code-box">
+							<div class="clearfix">
+								<a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left"  data-clipboard-target="#contextual-table-code"><i class="fa fa-clipboard"></i> Copy Code</a>
+								<a href="#contextual-table" class="btn btn-primary btn-sm pull-right" rel="content-y"  data-toggle="collapse" role="button"><i class="fa fa-eye-slash"></i> Hide Code</a>
+							</div>
+							<pre><code class="xml copy-pre" id="contextual-table-code">
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<tbody>
+											<tr class="table-active"><td></td></tr>
+											<tr class="table-primary"><td></td></tr>
+											<tr class="table-secondary"><td></td></tr>
+											<tr class="table-success"><td></td></tr>
+											<tr class="table-danger"><td></td></tr>
+											<tr class="table-warning"><td></td></tr>
+											<tr class="table-info"><td></td></tr>
+											<tr class="table-light"><td></td></tr>
+											<tr class="table-dark"><td></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</code></pre>
+						</div>
+					</div>
+				</div>
+				<!-- Contextual classes End -->
+			</div>
+			<?php include('include/footer.php'); ?>
+		</div>
+	</div>
+	<%- include ../shared/script %>
+</body>
+</html>

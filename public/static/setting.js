@@ -6,14 +6,7 @@ jQuery(window).on("load",function() {
 		html: true
 	});
 });
-jQuery(window).on("load resize", function () {
-	$(".customscroll").mCustomScrollbar({
-		theme: "minimal-dark",
-		advanced:{
-			autoScrollOnFocus: false,
-		},
-	});
-});
+
 jQuery(document).ready(function(){
 	"use strict";
 	// Background Image
@@ -26,9 +19,7 @@ jQuery(document).ready(function(){
 	});
 
 	// click to scroll
-	$('.collapse-box').on('shown.bs.collapse', function () {
-		$(".customscroll").mCustomScrollbar("scrollTo",$(this));
-	});
+
 
 	// code split
 	var entityMap = {
