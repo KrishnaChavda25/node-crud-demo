@@ -51,7 +51,7 @@ exports.signup = function(req, res) {
 
 	if (req.session.user) {
 
-		res.redirect('/home');
+		res.redirect('/admin/home');
 
 	} else {
 
@@ -71,7 +71,7 @@ exports.login = function(req, res) {
 	
 	if (req.session.user) {
 
-		res.redirect('/home');
+		res.redirect('/admin/home');
 
 	} else {
 

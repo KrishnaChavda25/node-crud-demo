@@ -20,10 +20,10 @@
 					        <div class="alert alert-danger"><%= message %></div>
 					    <% } %>
 						<div class="pull-right">
-							<a href="#basic-form1" class="btn btn-primary btn-sm scroll-click" rel="content-y"  data-toggle="collapse" role="button"><i class="fa fa-arrow-left"></i> Back</a>
+							<a href="/admin/blogs" class="btn btn-primary btn-sm" role="button"><i class="fa fa-arrow-left"></i> Back</a>
 						</div>
 					</div>
-					<form role="form" action="/blogs/update/<%= blog.id %>" role="form" method="post" class="login-form">
+					<form role="form" action="/admin/blogs/update/<%= blog.id %>" role="form" method="post" class="login-form">
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Title</label>
 							<div class="col-sm-12 col-md-10">

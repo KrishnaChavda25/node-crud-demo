@@ -84,7 +84,7 @@ exports.save = function(req, res, next) {
 		      if (error) {
 		        return next(error);
 		      } else {
-		        res.redirect('/blogs');
+		        res.redirect('/admin/blogs');
 		      }
 		    });
 
@@ -150,7 +150,7 @@ exports.update = function(req, res) {
 		      if (error) {
 		        return next(error);
 		      } else {
-		        res.redirect('/blogs');
+		        res.redirect('/admin/blogs');
 		      }
 		    });
 
@@ -206,7 +206,7 @@ exports.delete = function(req, res) {
 		    // We'll create a simple object to send back with a message and the id of the document that was removed
 		    // You can really do this however you want, though.
 		        message: "Todo successfully deleted",
-		        res.redirect('/blogs');
+		        res.redirect('/admin/blogs');
 		});
 
 	} else {
