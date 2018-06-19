@@ -14,35 +14,31 @@
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix mb-20">
 						<div class="pull-left">
-							<h4 class="text-blue">Blogs</h4>
+							<h4 class="text-blue">Blog <%= blog.id %></h4>
 						</div>
 						<div class="pull-right">
-							<a href="/blogs/create" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-plus"></i> Add Blog</a>
+							<a href="/blogs" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-arrow-left"></i> Back</a>
 						</div>
 					</div>
 					<div class="table-responsive">
 						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Name</th>
-									<th scope="col">Author</th>
-									<th scope="col">Created At</th>
-									<th scope="col">Status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
 							<tbody>
-								<% for(var i=0; i<result.length; i++) {%>
 									<tr class="table-active">
-										<th><%= i + 1 %></th>
-										<td><%= result[i].title %></td>
-										<td><%= result[i].author %></td>
-										<td><%= result[i].created_date.toGMTString(); %></td>
-										<td><%= result[i].status %></td>
-										<td><a href="/blogs/show/<%= result[i].id %>" class="btn btn-warning">Show</a> <a href="/blogs/edit/<%= result[i].id %>" class="btn btn-success">Edit</a> <a href="/blogs/delete/<%= result[i].id %>" class="btn btn-danger">Delete</a></td>
+										<th scope="col">Name</th>
+										<td><%= blog.title %></td>
 									</tr>
-								<% } %>								 
+									<tr>
+										<th scope="col">Author</th>
+										<td><%= blog.author %></td>
+									</tr>
+									<tr class="table-active">
+										<th scope="col">Created At</th>
+										<td><%= blog.created_date.toGMTString(); %></td>
+									</tr>
+									<tr>
+										<th scope="col">Status</th>
+										<td><%= blog.status %></td>										
+									</tr>
 							</tbody>
 						</table>
 					</div>

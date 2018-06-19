@@ -13,7 +13,7 @@ var blogSchema = mongoose.Schema({
 	created_date: Date,
 	updated_date: Date,
 	active_hash: String
-});
+}, { collection: 'blogs' });
 
 //create the model for users and expose it to our app
 var Blog = mongoose.model('blogs', blogSchema);

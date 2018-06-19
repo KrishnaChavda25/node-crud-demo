@@ -27,7 +27,7 @@ module.exports = function (app, passport) {
     app.get('/blogs/create', blog.create);
     app.post('/blogs/save', blog.save);
     app.get('/blogs/edit/:id', blog.edit);
-    app.post('/blogs/update', blog.update);
+    app.post('/blogs/update/:id', blog.update);
     app.get('/blogs/show/:id', blog.show);
     app.delete('/blogs/delete/:id', blog.delete);
 
