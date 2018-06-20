@@ -45,9 +45,10 @@ exports.list = function(req, res) {
 exports.create = function(req, res) {
 	if (req.session.user) {
 		message = '';
-		Category.find((err, category) => {
+		Category.find((err, categories) => {
+			categories = categories;
 			if (err) return console.log(err)
-				res.render('blogs/create',{message: message, category:category});
+				res.render('blogs/create',{message: message, categories:categories});
 		})
 	} else {
 		res.render('login', {
