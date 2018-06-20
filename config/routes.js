@@ -13,6 +13,9 @@ module.exports = function (app, passport) {
     // access register page
     app.get('/signup', home.signup);
 
+    // logout
+    app.get('/logout', home.logout);
+
     // front home page
     app.get('/', home.front);
 
@@ -32,6 +35,9 @@ module.exports = function (app, passport) {
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
+
+    // list all users
+    app.get('/admin/users', home.users);
 
     // blog crud routes
     app.get('/admin/blogs', blog.list);

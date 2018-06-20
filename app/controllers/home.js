@@ -73,3 +73,26 @@ exports.login = function(req, res) {
 		});
 	}
 }
+
+// logout
+exports.logout = function (req, res){
+  req.session.destroy(function (err) {
+    res.redirect('/login'); //Inside a callback… bulletproof!
+  });
+};
+
+// List all users
+exports.users = function(req, res) {
+	if (req.session.user) {
+		User.find((err, users) => {
+			if (err) return console.log(err)
+				res.render('users',{users:users});
+		})
+	} else {
+		res.render('login', {
+			error : req.flash("error"),
+			success: req.flash("success"),
+			session:req.session
+		});
+	}
+}

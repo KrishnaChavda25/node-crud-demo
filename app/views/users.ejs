@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%- include ../shared/head %>
+	<%- include ../views/shared/head %>
 </head>
 <body>
-	<%- include ../shared/header %>
-	<%- include ../shared/sidebar %>
+	<%- include ../views/shared/header %>
+	<%- include ../views/shared/sidebar %>
 	<div class="main-container">
 		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
 			<div class="min-height-200px">
@@ -14,34 +14,33 @@
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix mb-20">
 						<div class="pull-left">
-							<h4 class="text-blue">Categories</h4>
-						</div>
-						<div class="pull-right">
-							<a href="/admin/categories/create" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-plus"></i> Add Category</a>
+							<h4 class="text-blue">Users</h4>
 						</div>
 					</div>
 					<div class="table-responsive">
-						<% if(categories.length > 0) {%>
+						<% if(users.length > 0) {%>
 						<table class="table">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Name</th>
-									<th>Actions</th>
+									<th scope="col">Email</th>
+									<th scope="col">Status</th>
 								</tr>
 							</thead>
 							<tbody>
-								<% for(var i=0; i<categories.length; i++) {%>
+								<% for(var i=0; i<users.length; i++) {%>
 									<tr class="table-active">
 										<th><%= i + 1 %></th>
-										<td><%= categories[i].title %></td>
-										<td><a href="/admin/categories/edit/<%= categories[i].id %>" class="btn btn-success"><i class="fa fa-pencil"></i></a> <a href="/admin/categories/delete/<%= categories[i].id %>" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+										<td><%= users[i].name %></td>
+										<td><%= users[i].mail %></td>
+										<td><%= users[i].status %></td>
 									</tr>
 								<% } %>								 
 							</tbody>
 						</table>
 						<% } else {%>
-							<P>No categories found</P>
+							<P>No users found</P>
 							<% } %>		
 					</div>
 				</div>
@@ -50,6 +49,6 @@
 			<?php include('include/footer.php'); ?>
 		</div>
 	</div>
-	<%- include ../shared/script %>
+	<%- include ../views/shared/script %>
 </body>
 </html>

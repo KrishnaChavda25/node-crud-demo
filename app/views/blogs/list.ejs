@@ -28,7 +28,6 @@
 									<th scope="col">#</th>
 									<th scope="col">Name</th>
 									<th scope="col">Author</th>
-									<th scope="col">Category</th>
 									<th scope="col">Status</th>
 									<th>Actions</th>
 								</tr>
@@ -39,7 +38,6 @@
 										<th><%= i + 1 %></th>
 										<td><%= blogs[i].title %></td>
 										<td><%= blogs[i].author %></td>
-										<td><%= blogs[i].category_id; %></td>
 										<td><%= blogs[i].status %></td>
 										<td><a href="/admin/blogs/show/<%= blogs[i].id %>" class="btn btn-warning"><i class="fa fa-eye"></i></a> <a href="/admin/blogs/edit/<%= blogs[i].id %>" class="btn btn-success"><i class="fa fa-pencil"></i></a> <a href="/admin/blogs/delete/<%= blogs[i].id %>" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
 									</tr>
@@ -49,31 +47,6 @@
 						<% } else {%>
 							<P>No blogs found</P>
 							<% } %>		
-					</div>
-					<div class="collapse collapse-box" id="contextual-table">
-						<div class="code-box">
-							<div class="clearfix">
-								<a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left"  data-clipboard-target="#contextual-table-code"><i class="fa fa-clipboard"></i> Copy Code</a>
-								<a href="#contextual-table" class="btn btn-primary btn-sm pull-right" rel="content-y"  data-toggle="collapse" role="button"><i class="fa fa-eye-slash"></i> Hide Code</a>
-							</div>
-							<pre><code class="xml copy-pre" id="contextual-table-code">
-								<div class="table-responsive">
-									<table class="table table-striped">
-										<tbody>
-											<tr class="table-active"><td></td></tr>
-											<tr class="table-primary"><td></td></tr>
-											<tr class="table-secondary"><td></td></tr>
-											<tr class="table-success"><td></td></tr>
-											<tr class="table-danger"><td></td></tr>
-											<tr class="table-warning"><td></td></tr>
-											<tr class="table-info"><td></td></tr>
-											<tr class="table-light"><td></td></tr>
-											<tr class="table-dark"><td></td></tr>
-										</tbody>
-									</table>
-								</div>
-							</code></pre>
-						</div>
 					</div>
 				</div>
 				<!-- Contextual classes End -->
