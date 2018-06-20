@@ -20,7 +20,7 @@ exports.loggedIn = function(req, res, next)
 
 // for home page
 exports.front = function(req, res) {
-	res.send("Hi welcome in front website..!");
+	res.render('index');
 }
 
 // for admin panel home page
