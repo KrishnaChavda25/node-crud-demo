@@ -92,8 +92,11 @@ exports.save = function(req, res, next) {
 				});
 			}
 			else {
-				message = 'All fields required.';
-				res.render('blogs/create', {message: message});
+				Category.find((err, categories) => {
+					categories = categories;
+					message = 'All fields required.';
+					res.render('blogs/create', {message: message, categories: categories});
+				})
 			}
 		});
 	} else {
