@@ -95,7 +95,7 @@ p {
 	Global Styles Start
 ==============================================================*/
 .pre-loader{
-	background: url(../images/new-loader.gif) no-repeat #fffef2;
+	background: url(../img/new-loader.gif) no-repeat #fffef2;
 	background-position: center center;
 	background-size: 13%;
 	position: fixed;
