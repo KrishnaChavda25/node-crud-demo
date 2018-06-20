@@ -1,223 +1,188 @@
+// require all packages which is useful
 var express  = require('express');
 var numeral = require('numeral');
+
+// access models
 var Category = require('../models/category');
+
+// for date
 var dateFormat = require('dateformat');
+
+// for routes
 var router = express.Router();
 
-
+// for data validation
 expressValidator = require('express-validator');
+
 app = express();
 app.use(expressValidator());
-/***************Mongodb configuratrion********************/
+
+//connect your database
 var mongoose = require('mongoose');
-//configuration ===============================================================
-mongoose.connect('mongodb://final_demo_98:final_demo_98@ds259820.mlab.com:59820/final_auth_demo'); // connect to our database
+mongoose.connect('mongodb://final_demo_98:final_demo_98@ds259820.mlab.com:59820/final_auth_demo');
 var db
 
+// CRUD method for Category
+
+// List all categories
 exports.list = function(req, res) {
-	
 	if (req.session.user) {
-
-		Category.find((err, result) => {
-				if (err) return console.log(err)
-					res.render('categories/list',{result:result});
-			})
-
+		Category.find((err, categories) => {
+			if (err) return console.log(err)
+				res.render('categories/list',{categories:categories});
+		})
 	} else {
-
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
-
 	}
-	
 }
 
+// Create new category
 exports.create = function(req, res) {
-
-
-	
 	if (req.session.user) {
 		message = '';
 		res.render('categories/create',{message: message});
-
 	} else {
-
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
-
 	}
-	
 }
 
+// Save new category
 exports.save = function(req, res, next) {
 	if (req.session.user) {
-
-	Category.find().sort([['_id', 'descending']]).limit(1).exec(function(err, categorydata) {	
-		if(categorydata.length > 0)
-		{
-			my_id = categorydata[0]._id + 1;
-		}
-		else
-		{
-			my_id =1;
-		}
-        if (req.body.title) {
-
-           message = '';
-           var categoryData = {
-		      title: req.body.title,
-		      author: req.body.author,
-		      description: req.body.description,
-		      created_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
-		      updated_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
-		      status: 'active',
-		      _id: my_id,
-		    }
-
-		    Category.create(categoryData, function (error, user) {
-		      if (error) {
-		        return next(error);
-		      } else {
-		        res.redirect('/admin/categories');
-		      }
-		    });
-
-         }
-         else {
-		    message = 'Title is required.';
-		    res.render('categories/create', {message: message});
-		  }
+		Category.find().sort([['_id', 'descending']]).limit(1).exec(function(err, categorydata) {	
+			if(categorydata.length > 0)
+			{
+				my_id = categorydata[0]._id + 1;
+			}
+			else
+			{
+				my_id =1;
+			}
+			if (req.body.title) {
+				message = '';
+				var categoryData = {
+					title: req.body.title,
+					author: req.body.author,
+					description: req.body.description,
+					created_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
+					updated_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
+					status: 'active',
+					_id: my_id,
+				}
+				Category.create(categoryData, function (error, user) {
+					if (error) {
+						return next(error);
+					} else {
+						res.redirect('/admin/categories');
+					}
+				});
+			}
+			else {
+				message = 'Title is required.';
+				res.render('categories/create', {message: message});
+			}
 		});
 	} else {
-
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
-
-	}
-    };
-
-
-exports.edit = function(req, res) {
- 		if (req.session.user) {
-			//calling the function from index.js class using routes object..
-			message = '';
-			Category.findOne({ _id: req.params.id }, function(err, doc) {
-		      console.log('category : ', JSON.stringify(doc));
-		      res.render('categories/edit', {category: doc, message: message})
-		    });
-		} else {
-
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
-
 	}
 };
 
+// Edit category
+exports.edit = function(req, res) {
+	if (req.session.user) {
+		//calling the function from categories/edit.ejs class using routes object..
+		message = '';
+		Category.findOne({ _id: req.params.id }, function(err, category) {
+			console.log('category : ', JSON.stringify(category));
+			res.render('categories/edit', {category: category, message: message})
+		});
+	} else {
+		res.render('login', {
+			error : req.flash("error"),
+			success: req.flash("success"),
+			session:req.session
+		});
+	}
+};
+
+// Update category
 exports.update = function(req, res) {
-
-
-	
 	if (req.session.user) {
 		console.log('category : ', req.params.id);
-
 		if (req.body.title) {
-
-           message = '';
-           var categoryData = {
-		      title: req.body.title,
-		      author: req.body.author,
-		      description: req.body.description,
-		      created_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
-		      updated_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
-		      status: 'active',
-		    }
-
-		    Category.update({_id: req.params.id}, categoryData, function (error, user) {
-		      if (error) {
-		        return next(error);
-		      } else {
-		        res.redirect('/admin/categories');
-		      }
-		    });
-
-         }
-         else {
-		    message = 'Title is required.';
-		    res.render('categories/create', {message: message});
-		  }
-
+			message = '';
+			var categoryData = {
+				title: req.body.title,
+				author: req.body.author,
+				description: req.body.description,
+				created_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
+				updated_date: dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss"),
+				status: 'active',
+			}
+			Category.update({_id: req.params.id}, categoryData, function (error, user) {
+				if (error) {
+					return next(error);
+				} else {
+					res.redirect('/admin/categories');
+				}
+			});
+		}
+		else {
+			message = 'Title is required.';
+			res.render('categories/create', {message: message});
+		}
 	} else {
-
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
-
 	}
-	
 }
 
+// See category
 exports.show = function(req, res) {
-
-
-	
 	if (req.session.user) {
 		message = '';
-			Category.findOne({ _id: req.params.id }, function(err, doc) {
-		      console.log('category : ', JSON.stringify(doc));
-		      res.render('categories/show', {category: doc, message: message})
-		    });
+		Category.findOne({ _id: req.params.id }, function(err, category) {
+			console.log('category : ', JSON.stringify(category));
+			res.render('categories/show', {category: category, message: message})
+		});
 	} else {
-
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
-
 	}
-	
 }
 
+// Delete category
 exports.delete = function(req, res) {
-
-
-	
 	if (req.session.user) {
-
 		Category.findByIdAndRemove(req.params.id, (err, todo) => {  
-		    // As always, handle any potential errors:
-		    if (err) return res.status(500).send(err);
-		    // We'll create a simple object to send back with a message and the id of the document that was removed
-		    // You can really do this however you want, though.
-		        message: "Todo successfully deleted",
-		        res.redirect('/admin/categories');
-		});
-
-	} else {
-
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
-
-	}
-	
+		// As always, handle any potential errors:
+		if (err) return res.status(500).send(err);
+			message: "Todo successfully deleted",
+			res.redirect('/admin/categories');
+			});
+		} else {
+			res.render('login', {
+				error : req.flash("error"),
+				success: req.flash("success"),
+				session:req.session
+			});
+		}
 }
-
-
-    

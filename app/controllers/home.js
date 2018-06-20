@@ -1,26 +1,30 @@
+// require all packages which is useful
 var numeral = require('numeral');
 var bcrypt = require('bcrypt-nodejs');
 var dateFormat = require('dateformat');
+
+// access models
 var User = require('../models/home');
 var Blog = require('../models/blog');
 var Category = require('../models/category');
 
+// Check if user is loogged in or not, if not redirect to /login
 exports.loggedIn = function(req, res, next)
 {
 	if (req.session.user) { // req.session.passport._id
-
 		next();
-
 	} else {
-
 		res.redirect('/login');
-
 	}
-
 }
 
-exports.home = function(req, res) {
+// for home page
+exports.front = function(req, res) {
+	res.send("Hi welcome in front website..!");
+}
 
+// for admin panel home page
+exports.home = function(req, res) {
 	User.find().exec(function (err, results) {
 		var users = results.length
 		Blog.find().exec(function (err, results) {
@@ -30,7 +34,6 @@ exports.home = function(req, res) {
 				console.log('users : ', users);
 				console.log('blogs : ', blogs);
 				console.log('categories : ', categories);
-
 				res.render('home.ejs', {
 					error : req.flash("error"),
 					success: req.flash("success"),
@@ -43,47 +46,30 @@ exports.home = function(req, res) {
 			});
 		});
 	});	
-
 }
 
-
+// register
 exports.signup = function(req, res) {
-
 	if (req.session.user) {
-
-		res.redirect('/admin/home');
-
+		res.redirect('/admin');
 	} else {
-
 		res.render('signup', {
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
 	}
-
 }
 
-
+// login
 exports.login = function(req, res) {
-
-
-	
 	if (req.session.user) {
-
-		res.redirect('/admin/home');
-
+		res.redirect('/admin');
 	} else {
-
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
-
 	}
-	
 }
-
-
-    

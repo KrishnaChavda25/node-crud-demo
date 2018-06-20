@@ -1,11 +1,11 @@
 
-//app/models/user.js
 //load the things we need
 var mongoose = require('mongoose');
 
 //define the schema for our user model
 var blogSchema = mongoose.Schema({	
 	_id:{ type: Number, default: 1 },
+	category_id: Number,
 	title: String,
 	author: String,
 	description: String,

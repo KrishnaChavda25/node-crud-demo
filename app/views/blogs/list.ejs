@@ -21,27 +21,27 @@
 						</div>
 					</div>
 					<div class="table-responsive">
-						<% if(result.length > 0) {%>
+						<% if(blogs.length > 0) {%>
 						<table class="table">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Name</th>
 									<th scope="col">Author</th>
-									<th scope="col">Created At</th>
+									<th scope="col">Category</th>
 									<th scope="col">Status</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								<% for(var i=0; i<result.length; i++) {%>
+								<% for(var i=0; i<blogs.length; i++) {%>
 									<tr class="table-active">
 										<th><%= i + 1 %></th>
-										<td><%= result[i].title %></td>
-										<td><%= result[i].author %></td>
-										<td><%= result[i].created_date.toGMTString(); %></td>
-										<td><%= result[i].status %></td>
-										<td><a href="/admin/blogs/show/<%= result[i].id %>" class="btn btn-warning">Show</a> <a href="/admin/blogs/edit/<%= result[i].id %>" class="btn btn-success">Edit</a> <a href="/admin/blogs/delete/<%= result[i].id %>" class="btn btn-danger">Delete</a></td>
+										<td><%= blogs[i].title %></td>
+										<td><%= blogs[i].author %></td>
+										<td><%= blogs[i].category_id; %></td>
+										<td><%= blogs[i].status %></td>
+										<td><a href="/admin/blogs/show/<%= blogs[i].id %>" class="btn btn-warning"><i class="fa fa-eye"></i></a> <a href="/admin/blogs/edit/<%= blogs[i].id %>" class="btn btn-success"><i class="fa fa-pencil"></i></a> <a href="/admin/blogs/delete/<%= blogs[i].id %>" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
 									</tr>
 								<% } %>								 
 							</tbody>

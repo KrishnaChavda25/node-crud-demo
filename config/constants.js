@@ -1,5 +1,5 @@
 module.exports = {
-        'project_name':'express-mvc-generator',
+    'project_name':'express-mvc-generator',
 	'adminname': 'Rajaram',
 	'adminmail': 'test@gmail.com',
 	'host':"http://localhost:8042",

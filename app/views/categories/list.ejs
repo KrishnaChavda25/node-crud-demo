@@ -21,7 +21,7 @@
 						</div>
 					</div>
 					<div class="table-responsive">
-						<% if(result.length > 0) {%>
+						<% if(categories.length > 0) {%>
 						<table class="table">
 							<thead>
 								<tr>
@@ -31,11 +31,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for(var i=0; i<result.length; i++) {%>
+								<% for(var i=0; i<categories.length; i++) {%>
 									<tr class="table-active">
 										<th><%= i + 1 %></th>
-										<td><%= result[i].title %></td>
-										<td><a href="/admin/categories/edit/<%= result[i].id %>" class="btn btn-success">Edit</a> <a href="/admin/categories/delete/<%= result[i].id %>" class="btn btn-danger">Delete</a></td>
+										<td><%= categories[i].title %></td>
+										<td><a href="/admin/categories/edit/<%= categories[i].id %>" class="btn btn-success"><i class="fa fa-pencil"></i></a> <a href="/admin/categories/delete/<%= categories[i].id %>" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
 									</tr>
 								<% } %>								 
 							</tbody>

@@ -25,6 +25,16 @@
 					</div>
 					<form role="form" action="/admin/blogs/save" role="form" method="post" class="login-form">
 						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Select</label>
+							<div class="col-sm-12 col-md-10">
+								<select class="custom-select col-12" name="category_id">
+									<% for(var i=0; i<category.length; i++) {%>
+										<option value="<%= category[i].id %>"><%= category[i].title %></option>
+									<% } %>	
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Title</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="text" name="title" placeholder="Recent Activities">
