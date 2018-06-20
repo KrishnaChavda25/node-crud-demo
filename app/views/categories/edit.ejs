@@ -16,12 +16,15 @@
 							<h4 class="text-blue">Edit Category</h4>
 							<p class="mb-30 font-14"></p>
 						</div>
-						<% if (message.length > 0) { %>
-					        <div class="alert alert-danger"><p style="margin-right: 250px; margin-top: 10px;"><%= message %></p></div>
-					    <% } %>
 						<div class="pull-right">
 							<a href="/admin/categories" class="btn btn-primary btn-sm" role="button"><i class="fa fa-arrow-left"></i> Back</a>
-						</div>
+						</div><br /><br />
+						<% if (message.length > 0) { %>
+							<div class="alert alert-danger alert-dismissible">
+							    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+							    <strong><%= message %>.</strong> 
+							</div>
+						<% } %>
 					</div>
 					<form role="form" action="/admin/categories/update/<%= category.id %>" role="form" method="post" class="login-form">
 						<div class="form-group row">

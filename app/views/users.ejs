@@ -19,7 +19,7 @@
 					</div>
 					<div class="table-responsive">
 						<% if(users.length > 0) {%>
-						<table class="table">
+						<table class="table table-striped">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
@@ -30,7 +30,7 @@
 							</thead>
 							<tbody>
 								<% for(var i=0; i<users.length; i++) {%>
-									<tr class="table-danger">
+									<tr>
 										<th><%= i + 1 %></th>
 										<td><%= users[i].name %></td>
 										<td><%= users[i].mail %></td>
