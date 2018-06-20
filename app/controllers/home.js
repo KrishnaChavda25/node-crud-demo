@@ -20,7 +20,7 @@ exports.loggedIn = function(req, res, next)
 
 // for home page
 exports.front = function(req, res) {
-	res.render('index');
+	res.render('index', {layout: false});
 }
 
 // for admin panel home page
@@ -56,7 +56,8 @@ exports.signup = function(req, res) {
 		res.render('signup', {
 			error : req.flash("error"),
 			success: req.flash("success"),
-			session:req.session
+			session:req.session,
+			layout: false
 		});
 	}
 }
@@ -69,7 +70,8 @@ exports.login = function(req, res) {
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
-			session:req.session
+			session:req.session,
+			layout: false
 		});
 	}
 }

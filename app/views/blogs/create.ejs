@@ -1,73 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<%- include ../shared/head %>
-</head>
-<body>
-	<%- include ../shared/header %>
-	<%- include ../shared/sidebar %>
-	<div class="main-container">
-		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
-			<div class="min-height-200px">
-				<!-- Default Basic Forms Start -->
-				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue">Add New Blog</h4>
-							<p class="mb-30 font-14"></p>
-						</div>
-						<div class="pull-right">
-							<a href="/admin/blogs" class="btn btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i> Back</a>
-						</div>
-						<br/><br/>
-						<% if (message.length > 0) { %>
-							<div class="alert alert-danger alert-dismissible">
-							    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-							    <strong><%= message %>.</strong> 
-							</div>
-						<% } %>
-					</div>
-					<form role="form" action="/admin/blogs/save" role="form" method="post" class="login-form">
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Select</label>
-							<div class="col-sm-12 col-md-10">
-								<select class="custom-select col-12" name="category_id">
-									<% for(var i=0; i<categories.length; i++) {%>
-										<option value="<%= categories[i].id %>"><%= categories[i].title %></option>
-									<% } %>	
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Title</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="title" placeholder="Recent Activities">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Author</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="author" placeholder="Johnny Brown">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Description</label>
-							<div class="col-sm-12 col-md-10">
-								<textarea class="form-control" name="description" placeholder="Description"></textarea>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-12 col-md-10">
-								<button type="submit" class="btn btn-outline-primary">Save!</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				<!-- Default Basic Forms End -->
+<div class="min-height-200px">
+	<!-- Default Basic Forms Start -->
+	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+		<div class="clearfix">
+			<div class="pull-left">
+				<h4 class="text-blue">Add New Blog</h4>
+				<p class="mb-30 font-14"></p>
 			</div>
-			<?php include('include/footer.php'); ?>
+			<div class="pull-right">
+				<a href="/admin/blogs" class="btn btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i> Back</a>
+			</div>
+			<br/><br/>
+			<% if (message.length > 0) { %>
+				<div class="alert alert-danger alert-dismissible">
+				    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+				    <strong><%= message %>.</strong> 
+				</div>
+			<% } %>
 		</div>
+		<form role="form" action="/admin/blogs/save" role="form" method="post" class="login-form">
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Select</label>
+				<div class="col-sm-12 col-md-10">
+					<select class="custom-select col-12" name="category_id">
+						<% for(var i=0; i<categories.length; i++) {%>
+							<option value="<%= categories[i].id %>"><%= categories[i].title %></option>
+						<% } %>	
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Title</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" type="text" name="title" placeholder="Recent Activities">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Author</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" type="text" name="author" placeholder="Johnny Brown">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Description</label>
+				<div class="col-sm-12 col-md-10">
+					<textarea class="form-control" name="description" placeholder="Description"></textarea>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12 col-md-10">
+					<button type="submit" class="btn btn-outline-primary">Save!</button>
+				</div>
+			</div>
+		</form>
 	</div>
-	<%- include ../shared/script %>
-</body>
-</html>
+	<!-- Default Basic Forms End -->
+</div>

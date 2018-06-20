@@ -20,7 +20,7 @@ module.exports = function (app, passport) {
     app.get('/', home.front);
 
     // admin panel home page
-    app.get('/admin/', home.loggedIn, home.home);//home
+    app.get('/admin', home.loggedIn, home.home);//home
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {

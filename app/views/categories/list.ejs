@@ -1,55 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<%- include ../shared/head %>
-</head>
-<body>
-	<%- include ../shared/header %>
-	<%- include ../shared/sidebar %>
-	<div class="main-container">
-		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
-			<div class="min-height-200px">
+<div class="min-height-200px">
 
-				<!-- Contextual classes Start -->
-				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<div class="clearfix mb-20">
-						<div class="pull-left">
-							<h4 class="text-blue">Categories</h4>
-						</div>
-						<div class="pull-right">
-							<a href="/admin/categories/create" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-plus"></i> Add Category</a>
-						</div>
-					</div>
-					<div class="table-responsive">
-						<% if(categories.length > 0) {%>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Title</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% for(var i=0; i<categories.length; i++) {%>
-									<tr>
-										<th><%= i + 1 %></th>
-										<td><%= categories[i].title %></td>
-										<td><a href="/admin/categories/edit/<%= categories[i].id %>" class="btn btn-success"><i class="fa fa-pencil"></i></a> <a href="/admin/categories/delete/<%= categories[i].id %>" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
-									</tr>
-								<% } %>								 
-							</tbody>
-						</table>
-						<% } else {%>
-							<P>No categories found</P>
-							<% } %>		
-					</div>
-				</div>
-				<!-- Contextual classes End -->
+	<!-- Contextual classes Start -->
+	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+		<div class="clearfix mb-20">
+			<div class="pull-left">
+				<h4 class="text-blue">Categories</h4>
 			</div>
-			<?php include('include/footer.php'); ?>
+			<div class="pull-right">
+				<a href="/admin/categories/create" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-plus"></i> Add Category</a>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<% if(categories.length > 0) {%>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Title</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(var i=0; i<categories.length; i++) {%>
+						<tr>
+							<th><%= i + 1 %></th>
+							<td><%= categories[i].title %></td>
+							<td><a href="/admin/categories/edit/<%= categories[i].id %>" class="btn btn-success"><i class="fa fa-pencil"></i></a> <a href="/admin/categories/delete/<%= categories[i].id %>" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					<% } %>								 
+				</tbody>
+			</table>
+			<% } else {%>
+				<P>No categories found</P>
+				<% } %>		
 		</div>
 	</div>
-	<%- include ../shared/script %>
-</body>
-</html>
+	<!-- Contextual classes End -->
+</div>

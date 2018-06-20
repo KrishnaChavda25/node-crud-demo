@@ -1,54 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<%- include ../views/shared/head %>
-</head>
-<body>
-	<%- include ../views/shared/header %>
-	<%- include ../views/shared/sidebar %>
-	<div class="main-container">
-		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
-			<div class="min-height-200px">
-
-				<!-- Contextual classes Start -->
-				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<div class="clearfix mb-20">
-						<div class="pull-left">
-							<h4 class="text-blue">Users</h4>
-						</div>
-					</div>
-					<div class="table-responsive">
-						<% if(users.length > 0) {%>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Name</th>
-									<th scope="col">Email</th>
-									<th scope="col">Status</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% for(var i=0; i<users.length; i++) {%>
-									<tr>
-										<th><%= i + 1 %></th>
-										<td><%= users[i].name %></td>
-										<td><%= users[i].mail %></td>
-										<td><%= users[i].status %></td>
-									</tr>
-								<% } %>								 
-							</tbody>
-						</table>
-						<% } else {%>
-							<P>No users found</P>
-							<% } %>		
-					</div>
-				</div>
-				<!-- Contextual classes End -->
+<div class="min-height-200px">
+	<!-- Contextual classes Start -->
+	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+		<div class="clearfix mb-20">
+			<div class="pull-left">
+				<h4 class="text-blue">Users</h4>
 			</div>
-			<?php include('include/footer.php'); ?>
+		</div>
+		<div class="table-responsive">
+			<% if(users.length > 0) {%>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(var i=0; i<users.length; i++) {%>
+						<tr>
+							<th><%= i + 1 %></th>
+							<td><%= users[i].name %></td>
+							<td><%= users[i].mail %></td>
+							<td><%= users[i].status %></td>
+						</tr>
+					<% } %>								 
+				</tbody>
+			</table>
+			<% } else {%>
+				<P>No users found</P>
+				<% } %>		
 		</div>
 	</div>
-	<%- include ../views/shared/script %>
-</body>
-</html>
+	<!-- Contextual classes End -->
+</div>

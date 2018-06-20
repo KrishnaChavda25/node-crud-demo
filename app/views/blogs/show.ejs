@@ -1,57 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<%- include ../shared/head %>
-</head>
-<body>
-	<%- include ../shared/header %>
-	<%- include ../shared/sidebar %>
-	<div class="main-container">
-		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
-			<div class="min-height-200px">
-
-				<!-- Contextual classes Start -->
-				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<div class="clearfix mb-20">
-						<div class="pull-left">
-							<h4 class="text-blue">Blog <%= blog.id %></h4>
-						</div>
-						<div class="pull-right">
-							<a href="/admin/blogs" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-arrow-left"></i> Back</a>
-						</div>
-					</div>
-					<div class="table-responsive">
-						<table class="table">
-							<tbody>
-									<tr class="table-active">
-										<th scope="col">Name</th>
-										<td><%= blog.title %></td>
-									</tr>
-									<tr>
-										<th scope="col">Author</th>
-										<td><%= blog.author %></td>
-									</tr>
-									<tr class="table-active">
-										<th scope="col">Description</th>
-										<td><%= blog.description %></td>
-									</tr>									
-									<tr>
-										<th scope="col">Status</th>
-										<td><%= blog.status %></td>										
-									</tr>
-									<tr class="table-active">
-										<th scope="col">Created At</th>
-										<td><%= blog.created_date.toGMTString(); %></td>
-									</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<!-- Contextual classes End -->
+<div class="min-height-200px">
+	<!-- Contextual classes Start -->
+	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+		<div class="clearfix mb-20">
+			<div class="pull-left">
+				<h4 class="text-blue">Blog <%= blog.id %></h4>
 			</div>
-			<?php include('include/footer.php'); ?>
+			<div class="pull-right">
+				<a href="/admin/blogs" class="btn btn-primary btn-sm scroll-click" rel="content-y" role="button"><i class="fa fa-arrow-left"></i> Back</a>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table class="table">
+				<tbody>
+						<tr class="table-active">
+							<th scope="col">Name</th>
+							<td><%= blog.title %></td>
+						</tr>
+						<tr>
+							<th scope="col">Author</th>
+							<td><%= blog.author %></td>
+						</tr>
+						<tr class="table-active">
+							<th scope="col">Description</th>
+							<td><%= blog.description %></td>
+						</tr>									
+						<tr>
+							<th scope="col">Status</th>
+							<td><%= blog.status %></td>										
+						</tr>
+						<tr class="table-active">
+							<th scope="col">Created At</th>
+							<td><%= blog.created_date.toGMTString(); %></td>
+						</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-	<%- include ../shared/script %>
-</body>
-</html>
+	<!-- Contextual classes End -->
+</div>
