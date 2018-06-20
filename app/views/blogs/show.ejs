@@ -32,12 +32,16 @@
 										<td><%= blog.author %></td>
 									</tr>
 									<tr class="table-active">
-										<th scope="col">Created At</th>
-										<td><%= blog.created_date.toGMTString(); %></td>
-									</tr>
+										<th scope="col">Description</th>
+										<td><%= blog.description %></td>
+									</tr>									
 									<tr>
 										<th scope="col">Status</th>
 										<td><%= blog.status %></td>										
+									</tr>
+									<tr class="table-active">
+										<th scope="col">Created At</th>
+										<td><%= blog.created_date.toGMTString(); %></td>
 									</tr>
 							</tbody>
 						</table>
