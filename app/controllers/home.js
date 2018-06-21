@@ -31,9 +31,6 @@ exports.home = function(req, res) {
 			var blogs = results.length
 			Category.find().exec(function (err, results) {
 				var categories = results.length
-				console.log('users : ', users);
-				console.log('blogs : ', blogs);
-				console.log('categories : ', categories);
 				res.render('home.ejs', {
 					error : req.flash("error"),
 					success: req.flash("success"),
@@ -91,10 +88,6 @@ exports.users = function(req, res) {
 				res.render('users',{users:users});
 		})
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }

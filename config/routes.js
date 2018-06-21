@@ -3,6 +3,7 @@
 var home = require('../app/controllers/home');
 var blog = require('../app/controllers/blog');
 var category = require('../app/controllers/category');
+const { check, validationResult } = require('express-validator/check');
 
 // all routes
 module.exports = function (app, passport) {
@@ -51,7 +52,10 @@ module.exports = function (app, passport) {
     // category crud routes
     app.get('/admin/categories', category.list);
     app.get('/admin/categories/create', category.create);
-    app.post('/admin/categories/save', category.save);
+    app.post('/admin/categories/save', [
+      check('title')
+        .exists().withMessage('must be enter')
+    ], category.save);
     app.get('/admin/categories/edit/:id', category.edit);
     app.post('/admin/categories/update/:id', category.update);
     app.get('/admin/categories/delete/:id', category.delete);

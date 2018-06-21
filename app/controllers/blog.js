@@ -33,11 +33,7 @@ exports.list = function(req, res) {
 				res.render('blogs/list',{blogs:blogs});
 		})
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
@@ -51,11 +47,7 @@ exports.create = function(req, res) {
 				res.render('blogs/create',{message: message, categories:categories});
 		})
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
@@ -100,11 +92,7 @@ exports.save = function(req, res, next) {
 			}
 		});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 };
 
@@ -115,23 +103,17 @@ exports.edit = function(req, res) {
 		message = '';
 		Blog.findOne({ _id: req.params.id }, function(err, blog) {
 			Category.find((err, category) => {
-				console.log('blog : ', JSON.stringify(blog));
 				res.render('blogs/edit', {blog: blog, message: message, category: category})
 			})
 		});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 };
 
 // Update blog
 exports.update = function(req, res) {
 	if (req.session.user) {
-		console.log('blog : ', req.params.id);
 		if (req.body.title && req.body.author && req.body.description && req.body.category_id) {
 			message = '';
 			var blogData = {
@@ -156,11 +138,7 @@ exports.update = function(req, res) {
 			res.render('blogs/create', {message: message});
 		}
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
@@ -169,15 +147,10 @@ exports.show = function(req, res) {
 	if (req.session.user) {
 		message = '';
 		Blog.findOne({ _id: req.params.id }, function(err, blog) {
-			console.log('blog : ', JSON.stringify(blog));
 			res.render('blogs/show', {blog: blog, message: message})
 		});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
@@ -191,10 +164,6 @@ exports.delete = function(req, res) {
 			res.redirect('/admin/blogs');
 		});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }

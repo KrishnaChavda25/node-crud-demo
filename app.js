@@ -60,6 +60,19 @@ app.use(passport.session());
 // use connect-flash for flash messages stored in session
 app.use(flash());
 
+
+// share loguser in all views
+var middleware = {
+
+    globalLocals: function (req, res, next) {
+        loguser = req.session.user,
+        next();
+    }
+
+};
+
+app.use(middleware.globalLocals);
+
 // load our routes and pass in our app and fully configured passport
 require('./config/routes.js')(app, passport);
 

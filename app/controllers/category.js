@@ -21,7 +21,7 @@ app.use(expressValidator());
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://final_demo_98:final_demo_98@ds259820.mlab.com:59820/final_auth_demo');
 var db
-
+const { check, validationResult } = require('express-validator/check');
 // CRUD method for Category
 
 // List all categories
@@ -32,11 +32,7 @@ exports.list = function(req, res) {
 				res.render('categories/list',{categories:categories});
 		})
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
@@ -46,17 +42,14 @@ exports.create = function(req, res) {
 		message = '';
 		res.render('categories/create',{message: message});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
 // Save new category
 exports.save = function(req, res, next) {
-	if (req.session.user) {
+	  const errors = validationResult(req);
+	  if (req.session.user) {
 		Category.find().sort([['_id', 'descending']]).limit(1).exec(function(err, categorydata) {	
 			if(categorydata.length > 0)
 			{
@@ -91,11 +84,7 @@ exports.save = function(req, res, next) {
 			}
 		});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 };
 
@@ -105,22 +94,16 @@ exports.edit = function(req, res) {
 		//calling the function from categories/edit.ejs class using routes object..
 		message = '';
 		Category.findOne({ _id: req.params.id }, function(err, category) {
-			console.log('category : ', JSON.stringify(category));
 			res.render('categories/edit', {category: category, message: message})
 		});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 };
 
 // Update category
 exports.update = function(req, res) {
 	if (req.session.user) {
-		console.log('category : ', req.params.id);
 		if (req.body.title) {
 			message = '';
 			var categoryData = {
@@ -144,11 +127,7 @@ exports.update = function(req, res) {
 			res.render('categories/create', {message: message});
 		}
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
@@ -157,15 +136,10 @@ exports.show = function(req, res) {
 	if (req.session.user) {
 		message = '';
 		Category.findOne({ _id: req.params.id }, function(err, category) {
-			console.log('category : ', JSON.stringify(category));
 			res.render('categories/show', {category: category, message: message})
 		});
 	} else {
-		res.render('login', {
-			error : req.flash("error"),
-			success: req.flash("success"),
-			session:req.session
-		});
+		res.redirect('/login');
 	}
 }
 
@@ -182,7 +156,8 @@ exports.delete = function(req, res) {
 			res.render('login', {
 				error : req.flash("error"),
 				success: req.flash("success"),
-				session:req.session
+				session:req.session,
+				layout: false
 			});
 		}
 }
