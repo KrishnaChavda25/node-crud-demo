@@ -21,7 +21,6 @@ app.use(expressValidator());
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://final_demo_98:final_demo_98@ds259820.mlab.com:59820/final_auth_demo');
 var db
-const { check, validationResult } = require('express-validator/check');
 // CRUD method for Category
 
 // List all categories
@@ -48,7 +47,6 @@ exports.create = function(req, res) {
 
 // Save new category
 exports.save = function(req, res, next) {
-	  const errors = validationResult(req);
 	  if (req.session.user) {
 		Category.find().sort([['_id', 'descending']]).limit(1).exec(function(err, categorydata) {	
 			if(categorydata.length > 0)
