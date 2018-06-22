@@ -8,13 +8,19 @@ var Category = require('../models/category');
 // for date
 var dateFormat = require('dateformat');
 
+var bodyParser = require('body-parser');
+
 // for routes
 var router = express.Router();
 
 // for data validation
 expressValidator = require('express-validator');
 
+var cookieParser = require('cookie-parser');
+
 app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(expressValidator());
 
 //connect your database
@@ -48,6 +54,11 @@ exports.create = function(req, res) {
 // Save new category
 exports.save = function(req, res, next) {
 	  if (req.session.user) {
+	  	console.log('request', req);
+	  	req.checkBody("title", "Please enter first name.").notEmpty();
+	  	var errors = req.validationErrors();
+	  	console.log('error', errors);
+
 		Category.find().sort([['_id', 'descending']]).limit(1).exec(function(err, categorydata) {	
 			if(categorydata.length > 0)
 			{
