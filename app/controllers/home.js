@@ -76,7 +76,8 @@ exports.login = function(req, res) {
 // logout
 exports.logout = function (req, res){
   req.session.destroy(function (err) {
-    res.redirect('/login'); //Inside a callback… bulletproof!
+  	//Inside a callback… bulletproof!
+    res.redirect('/login');
   });
 };
 
